@@ -4,10 +4,14 @@
 @tailwind utilities;
 
 html {
-    @apply overflow-hidden;
+    @apply overflow-x-hidden;
 }
 body {
-    @apply font-ubuntu w-full;
+    @apply font-ubuntu bg-main w-full min-w-[1000px];
+}
+
+section {
+    @apply max-w-custom m-auto;
 }
 .nav-item {
     @apply h-full border border-transparent hover:border-white items-center mx-0.5 px-2 rounded-sm hover:cursor-pointer flex-shrink-0;

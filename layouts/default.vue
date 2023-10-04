@@ -91,6 +91,7 @@
     </ul>
     <span class="flex text-white font-bold text-sm nav-item m-0 flex-grow justify-end pr-2">Les jours Flash eNuxt 10-11 octobre</span>
   </div>
+  <slot />
 </template>
 <script setup lang="ts">
 const cart_count = 0
