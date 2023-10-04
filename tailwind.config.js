@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['Arial', 'sans-serif'],
+        'ubuntu': ['Ubuntu', 'sans-serif'],
       },
       fontSize: {
         '2xs': ['10px', '12px'],

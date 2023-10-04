@@ -1,11 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
+html {
+    @apply overflow-hidden;
+}
 body {
-    @apply font-sans w-full bg-nav;
+    @apply font-ubuntu w-full;
 }
 .nav-item {
-    @apply h-full border border-transparent hover:border-white items-center mx-1.5 rounded-sm hover:cursor-pointer flex-shrink-0;
+    @apply h-full border border-transparent hover:border-white items-center mx-0.5 px-2 rounded-sm hover:cursor-pointer flex-shrink-0;
 }
