@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+body {
+    @apply font-sans w-full bg-nav;
+}
+.nav-item {
+    @apply h-full border border-transparent hover:border-white items-center mx-1.5 rounded-sm hover:cursor-pointer flex-shrink-0;
+}
