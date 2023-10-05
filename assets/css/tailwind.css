@@ -16,3 +16,7 @@ section {
 .nav-item {
     @apply h-full border border-transparent hover:border-white items-center mx-0.5 px-2 rounded-sm hover:cursor-pointer flex-shrink-0;
 }
+
+.nav-item-banner {
+    @apply h-full border border-transparent hover:border-white items-center mx-0.5 px-2 rounded-sm hover:cursor-pointer flex-shrink-0;
+}

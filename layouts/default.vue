@@ -20,7 +20,7 @@
         </div>
       </div>
       <div
-          class="flex flex-grow w-full gap-[3px] h-full items-center bg-white rounded-md focus-within:ring-[3px] focus-within:ring-orange">
+          class="flex flex-grow w-full gap-[3px] h-full items-center mx-4 bg-white rounded-md focus-within:ring-[3px] focus-within:ring-orange">
         <div class="flex h-full">
           <select class="h-full bg-light-grey text-black rounded-l-md p-2 focus:ring-[3px] focus:ring-orange">
             <option selected>Toutes nos catégories</option>
@@ -87,7 +87,7 @@
       <li class="flex items-center nav-item px-2">Informatique</li>
       <li class="flex items-center nav-item px-2">Mode</li>
       <li class="flex items-center nav-item px-2">Jeux et Jouets</li>
-      <li class="flex items-center nav-item px-2">Jeux vidéo</li>
+      <nuxt-link to="/jeux-video-console" class="flex items-center nav-item px-2">Jeux vidéo</nuxt-link>
     </ul>
     <span class="flex text-white font-bold text-sm nav-item m-0 flex-grow justify-end pr-2">Les jours Flash eNuxt 10-11 octobre</span>
   </div>
