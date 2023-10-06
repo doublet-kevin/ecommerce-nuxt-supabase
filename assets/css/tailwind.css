@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 html {
-    @apply overflow-x-hidden;
+
 }
 body {
     @apply font-ubuntu bg-main w-full min-w-[1000px];

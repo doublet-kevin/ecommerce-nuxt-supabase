@@ -1,4 +1,22 @@
 <script setup lang="ts">
+import {usePreviewStore} from "~/stores/previewCard";
+
+const supabase = useSupabaseClient()
+
+const store = usePreviewStore()
+const mostWantedGames = ref<any[]>([]);
+
+await useAsyncData('games', async () => {
+  const {data} = await supabase
+      .from('video_games_products')
+      .select('id, name, price')
+      .order('requested', {ascending: false})
+      .limit(8);
+  if (data) {
+    mostWantedGames.value = data;
+    console.log(mostWantedGames.value)
+  }
+});
 </script>
 
 <template>
@@ -36,7 +54,7 @@
     </aside>
 
     <!-- Main Content -->
-    <div class="flex flex-col gap-2 pl-3">
+    <div class="flex flex-col w-full gap-2 pl-3">
       <h1 class="text-2xl">Jeux Vidéo, Consoles et Accessoires</h1>
       <p class="text-sm">
         Découvrez notre sélection : Top ventes, Précommandes, Promotions, Xbox Series X et S, Xbox One,Nintendo Switch,
@@ -93,111 +111,19 @@
       <div class="flex items-end gap-2">
         <h1 class="font-bold text-2xl">Les plus demandées</h1><span><a href="">Voir plus</a></span>
       </div>
-      <div class="flex gap-1 overflow-x-hidden">
         <!-- Product Game Card -->
-        <div class="relative flex flex-col flex-shrink-0 [&_button]:hover:block">
-          <div class="flex flex-col items-center justify-end p-4 px-7 bg-light-grey">
-            <img src="@/assets/images/game-logo.jpg" alt="Game Logo"
-                 class="w-[180px] h-[230px] bg-light-grey object-cover">
-            <button class="hidden rounded-md absolute px-8 bg-white text-sm p-1 shadow-md">
-              Aperçu rapide
-            </button>
+        <!-- Client only need to be set see Hydratation mismatch issue -->
+        <ClientOnly>
+          <div v-if="mostWantedGames.length > 0">
+            <div class="grid grid-cols-8 gap-2 min-w-[1100px] overflow-x-hidden">
+            <VideoGameCard v-for="game in mostWantedGames" :name="game.name" :price="game.price" :key="game.id"/>
+            <VideoGamePreview />
+            </div>
           </div>
-          <div class="flex flex-col p-4 bg-light-grey-02">
-            <span class="text-2xl h-full">449<span class="text-sm align-top">45€</span></span>
-            <span class="py-4 text-sm">Un super jeu excellent</span>
+          <div v-else>
+            <p>loading...</p>
           </div>
-        </div>
-
-        <div class="relative flex flex-col flex-shrink-0 [&_button]:hover:block">
-          <div class="flex flex-col items-center justify-end p-4 px-7 bg-light-grey">
-            <img src="@/assets/images/game-logo.jpg" alt="Game Logo"
-                 class="w-[180px] h-[230px] bg-light-grey object-cover">
-            <button class="hidden rounded-md absolute px-8 bg-white text-sm p-1 shadow-md">
-              Aperçu rapide
-            </button>
-          </div>
-          <div class="flex flex-col p-4 bg-light-grey-02">
-            <span class="text-2xl h-full">449<span class="text-sm align-top">45€</span></span>
-            <span class="py-4 text-sm">Un super jeu excellent</span>
-          </div>
-        </div>
-
-        <div class="relative flex flex-col flex-shrink-0 [&_button]:hover:block">
-          <div class="flex flex-col items-center justify-end p-4 px-7 bg-light-grey">
-            <img src="@/assets/images/game-logo.jpg" alt="Game Logo"
-                 class="w-[180px] h-[230px] bg-light-grey object-cover">
-            <button class="hidden rounded-md absolute px-8 bg-white text-sm p-1 shadow-md">
-              Aperçu rapide
-            </button>
-          </div>
-          <div class="flex flex-col p-4 bg-light-grey-02">
-            <span class="text-2xl h-full">449<span class="text-sm align-top">45€</span></span>
-            <span class="py-4 text-sm">Un super jeu excellent</span>
-          </div>
-        </div>
-
-        <div class="relative flex flex-col flex-shrink-0 [&_button]:hover:block">
-          <div class="flex flex-col items-center justify-end p-4 px-7 bg-light-grey">
-            <img src="@/assets/images/game-logo.jpg" alt="Game Logo"
-                 class="w-[180px] h-[230px] bg-light-grey object-cover">
-            <button class="hidden rounded-md absolute px-8 bg-white text-sm p-1 shadow-md">
-              Aperçu rapide
-            </button>
-          </div>
-          <div class="flex flex-col p-4 bg-light-grey-02">
-            <span class="text-2xl h-full">449<span class="text-sm align-top">45€</span></span>
-            <span class="py-4 text-sm">Un super jeu excellent</span>
-          </div>
-        </div>
-
-        <div class="relative flex flex-col flex-shrink-0 [&_button]:hover:block">
-          <div class="flex flex-col items-center justify-end p-4 px-7 bg-light-grey">
-            <img src="@/assets/images/game-logo.jpg" alt="Game Logo"
-                 class="w-[180px] h-[230px] bg-light-grey object-cover">
-            <button class="hidden rounded-md absolute px-8 bg-white text-sm p-1 shadow-md">
-              Aperçu rapide
-            </button>
-          </div>
-          <div class="flex flex-col p-4 bg-light-grey-02">
-            <span class="text-2xl h-full">449<span class="text-sm align-top">45€</span></span>
-            <span class="py-4 text-sm">Un super jeu excellent</span>
-          </div>
-        </div>
-
-        <div class="relative flex flex-col flex-shrink-0 [&_button]:hover:block">
-          <div class="flex flex-col items-center justify-end p-4 px-7 bg-light-grey">
-            <img src="@/assets/images/game-logo.jpg" alt="Game Logo"
-                 class="w-[180px] h-[230px] bg-light-grey object-cover">
-            <button class="hidden rounded-md absolute px-8 bg-white text-sm p-1 shadow-md">
-              Aperçu rapide
-            </button>
-          </div>
-          <div class="flex flex-col p-4 bg-light-grey-02">
-            <span class="text-2xl h-full">449<span class="text-sm align-top">45€</span></span>
-            <span class="py-4 text-sm">Un super jeu excellent</span>
-          </div>
-        </div>
-
-        <div class="relative flex flex-col flex-shrink-0 [&_button]:hover:block">
-          <div class="flex flex-col items-center justify-end p-4 px-7 bg-light-grey">
-            <img src="@/assets/images/game-logo.jpg" alt="Game Logo"
-                 class="w-[180px] h-[230px] bg-light-grey object-cover">
-            <button class="hidden rounded-md absolute px-8 bg-white text-sm p-1 shadow-md">
-              Aperçu rapide
-            </button>
-          </div>
-          <div class="flex flex-col p-4 bg-light-grey-02">
-            <span class="text-2xl h-full">449<span class="text-sm align-top">45€</span></span>
-            <span class="py-4 text-sm">Un super jeu excellent</span>
-          </div>
-        </div>
-
+        </ClientOnly>
       </div>
-    </div>
   </section>
 </template>
-
-<style scoped>
-
-</style>
