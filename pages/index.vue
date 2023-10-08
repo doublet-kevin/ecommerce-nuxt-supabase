@@ -1,5 +1,5 @@
-<script setup lang="ts">
-
+<script setup>
+const {data} = await useFetch('/api/product')
 </script>
 
 <template>

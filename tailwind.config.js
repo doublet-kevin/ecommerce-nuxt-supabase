@@ -19,6 +19,7 @@ export default {
         'orange': '#FF9900',
         'light-grey': '#e6e6e6',
         'light-grey-02': '#fafafa',
+        'light-grey-03': '#f5f5f5',
         'banner': '#232f3f'
       }
     },
